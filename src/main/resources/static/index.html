@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div >
+    <p class="response"></p>
+</div>
+<script>
+
+    fetch("http://localhost:8080/accounts/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "username": "emirhanksdarakoc@adasdasd.com",
+            "password": "stringst"
+        })
+    }).then(response => {
+        // Sunucudan gelen yanıtın içeriğini al
+        return response.text();
+    }).then(data => {
+        // Yanıtı ekrana bas
+        const responseElement = document.querySelector('.response');
+        responseElement.textContent = data;
+    }).catch(error => {
+        // Hata durumunda ekrana hata mesajını bas
+        const responseElement = document.querySelector('.response');
+        responseElement.textContent = 'There was a problem with your fetch operation: ' + error.message;
+    });
+
+
+</script>
+</body>
+</html>
